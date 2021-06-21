@@ -1,0 +1,14 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "clase 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "mq",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}

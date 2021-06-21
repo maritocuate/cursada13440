@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>1. clases</title>
+</head>
+<body>
+     <script>
+          function Usuario(nombre, apellido, libros, mascotas) {
+               this.nombre = nombre
+               this.apellido  = apellido
+               this.libros = libros
+               this.mascotas = mascotas
+          }
+          
+          Usuario.prototype.getFullName = function() {
+               return `${this.nombre} ${this.apellido}`
+          }
+          
+          Usuario.prototype.addMascotas = function(mascota) {
+               this.mascotas = [...this.mascotas, mascota]
+          }
+          
+          Usuario.prototype.getMascota = function() {
+               return this.mascotas.length
+          }
+          
+          Usuario.prototype.addBook = function(book, autor) {
+               this.libros = [...this.libros, {book:book, autor:autor}]
+          }
+          
+          Usuario.prototype.getBooks = function() {
+               return this.libros.map(item => item.book)
+          }
+                         
+          const cliente = new Usuario('alejandra', 'grimaldi', [], ['spike'])
+          console.log( cliente.getFullName() )
+          cliente.addMascotas('firulais')
+          console.log( cliente.getMascota() )
+          cliente.addBook('principito', 'saint sup')
+          console.log( cliente.getBooks() )
+     </script>
+</body>
+</html>

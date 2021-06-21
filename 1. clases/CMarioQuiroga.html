@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>1. clases</title>
+</head>
+<body>
+     <script>
+          class Usuario {
+
+               constructor(nombre, apellido, libros, mascotas) {
+                 this.nombre = nombre
+                 this.apellido  = apellido
+                 this.libros = libros
+                 this.mascotas = mascotas
+               }
+             
+               getFullName() {
+                 return `${this.nombre} ${this.apellido}`
+               }
+               
+               addMascotas(mascota) {
+                 this.mascotas = [...this.mascotas, mascota]
+               }
+               getMascota() {
+                 return this.mascotas.length
+               }
+               
+               addBook(book, autor) {
+                 this.libros = [...this.libros, {book:book, autor:autor}]
+               }
+               getBooks() {
+                 return this.libros.map(item => item.book)
+               }
+             }
+             
+             const cliente = new Usuario('alejandra', 'grimaldi', [], ['spike'])
+             console.log( cliente.getFullName() )
+             cliente.addMascotas('firulais')
+             console.log( cliente.getMascota() )
+             cliente.addBook('principito', 'saint sup')
+             console.log( cliente.getBooks() )
+     </script>
+</body>
+</html>
