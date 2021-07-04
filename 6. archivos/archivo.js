@@ -1,34 +1,48 @@
 const fs = require('fs')
+const path = require('path')
 
 class Archivo {
 
-     leer() {
-          const src = fs.promises.readFile('./productos.txt',{encoding:'utf8'})
-          src.then(data => console.log( JSON.parse(data) ))
+     constructor(url) {
+          this._productos = __dirname+url
      }
 
-     guardar(nombre, precio, url) {
-          const src = fs.promises.readFile('./productos.txt',{encoding:'utf8'})
-          src.then(data => {
-               const parsedData = JSON.parse(data)
+     async leer() {
+          try{
+               const src = await fs.promises.readFile(this._productos, 'utf8')
+               const data = JSON.parse(src)
+               console.log(data) 
+           }catch(e){
+               console.log([])
+          }
+     }
 
+     async guardar(nombre, precio, url) {
+          try{
+               const src = await fs.promises.readFile(this._productos, 'utf8')
+               const data = JSON.parse(src)
+               
                let productoNuevo = {}
                productoNuevo.title = nombre
                productoNuevo.price = precio
                productoNuevo.thumbnail = url
-               productoNuevo.id = parsedData.slice(-1)[0].id + 1
+               productoNuevo.id = data.slice(-1)[0].id + 1
 
-               let temp = [...parsedData, productoNuevo]
-               fs.writeFileSync('./productos.txt', JSON.stringify(temp, null, '\t'))
-          })
+               let temp = [...data, productoNuevo]
+               fs.promises.writeFile(this._productos, JSON.stringify(temp, null, '\t'))
+
+          }catch(e){ console.log(e) }
      }
 
-     borrar() {
-          fs.writeFileSync('./info.txt', '[]')
+     async borrar() {    
+          try {
+               fs.unlinkSync(this._productos)
+          }catch(e){ console.log(e) }
      }
 }
 
-const archivo = new Archivo()
+const archivo = new Archivo('/productos.txt')
 archivo.leer()
 //archivo.guardar('Birome', 54, 'https://cdn3.iconfinder.com/data/icons/education-209/64/birome.png')
+//archivo.leer()
 //archivo.borrar()
