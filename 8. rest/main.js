@@ -1,8 +1,12 @@
 const fs = require('fs')
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = 8001
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/api/productos/listar', (req, res) => {
   fs.promises.readFile('./productos.txt', 'utf-8')
@@ -29,11 +33,11 @@ app.post('/api/productos/guardar', (req, res) => {
       let raw = JSON.parse(data)
       
       let productoNuevo = {}
-      productoNuevo.title = 'Bicicleta'
-      productoNuevo.price = 1000.50
-      productoNuevo.thumbnail = 'https://cdn3.iconfinder.com/data/icons/education-209/64/bycicle-256.png'
+      productoNuevo.title = req.body.titulo
+      productoNuevo.price = req.body.precio
+      productoNuevo.thumbnail = req.body.imagen
       productoNuevo.id = raw.slice(-1)[0].id + 1
-
+      
       let temp = [...raw, productoNuevo]
       fs.promises.writeFile('./productos.txt', JSON.stringify(temp, null, '\t')) 
       res.send(productoNuevo)
