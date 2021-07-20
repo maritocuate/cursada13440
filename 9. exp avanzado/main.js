@@ -36,9 +36,9 @@ router.put('/productos/actualizar/:id', (req, res) => {
       let productoNuevo = {}
       for (var i in raw) {
         if(raw[i].id == req.params.id) {
-          raw[i].title = req.query.title
-          raw[i].price = req.query.price
-          raw[i].thumbnail = req.query.thumbnail
+          raw[i].title = req.body.title
+          raw[i].price = req.body.price
+          raw[i].thumbnail = req.body.thumbnail
           productoNuevo = raw[i]
         }
       }
@@ -47,6 +47,23 @@ router.put('/productos/actualizar/:id', (req, res) => {
       res.send(productoNuevo) 
     })
 }) 
+
+router.post('/productos/guardar', (req, res) => {
+  fs.promises.readFile('./productos.txt', 'utf-8')
+    .then(data => {
+      let raw = JSON.parse(data)
+      
+      let productoNuevo = {}
+      productoNuevo.title = req.body.title
+      productoNuevo.price = req.body.price
+      productoNuevo.thumbnail = req.body.thumbnail
+      productoNuevo.id = raw.slice(-1)[0].id + 1
+      
+      let temp = [...raw, productoNuevo]
+      fs.promises.writeFile('./productos.txt', JSON.stringify(temp, null, '\t')) 
+      res.send(productoNuevo)
+    })
+})
 
 router.delete('/productos/borrar/:id', (req, res) => {
   fs.promises.readFile('./productos.txt', 'utf-8')
