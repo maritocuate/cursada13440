@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // settings
 app.set("views", "./views")
-app.set("view engine", "pug")
+app.set("view engine", "ejs")
 
 app.get('/productos/vista', (req, res) => {
   fs.promises.readFile('./productos.txt', 'utf-8')
