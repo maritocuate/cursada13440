@@ -33,7 +33,9 @@ app.get('/productos/vista', (req, res) => {
       var productos = raw
       res.render('main', {productos, hayProductos:true})
     })
-
+})
+app.get('/productos/agregar', (req, res) => {
+    res.render('add')
 })
 
 router.get('/productos/listar', (req, res) => {
@@ -73,7 +75,24 @@ router.put('/productos/actualizar/:id', (req, res) => {
       fs.promises.writeFile('./productos.txt', JSON.stringify(raw, null, '\t')) 
       res.send(productoNuevo) 
     })
-}) 
+})
+
+router.post('/productos/guardar', (req, res) => {
+  fs.promises.readFile('./productos.txt', 'utf-8')
+    .then(data => {
+      let raw = JSON.parse(data)
+      
+      let productoNuevo = {}
+      productoNuevo.title = req.body.title
+      productoNuevo.price = req.body.price
+      productoNuevo.thumbnail = req.body.thumbnail
+      productoNuevo.id = raw.slice(-1)[0].id + 1
+      
+      let temp = [...raw, productoNuevo]
+      fs.promises.writeFile('./productos.txt', JSON.stringify(temp, null, '\t')) 
+      res.redirect('/productos/agregar')
+    })
+})
 
 router.delete('/productos/borrar/:id', (req, res) => {
   fs.promises.readFile('./productos.txt', 'utf-8')

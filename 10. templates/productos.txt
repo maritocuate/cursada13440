@@ -16,5 +16,11 @@
 		"price": 345.67,
 		"thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
 		"id": 3
+	},
+	{
+		"title": "goma",
+		"price": "500",
+		"thumbnail": "http://cdn.shopify.com/s/files/1/1086/1234/products/005813907-400x400_grande.jpg",
+		"id": 4
 	}
 ]
