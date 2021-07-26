@@ -24,6 +24,9 @@ app.get('/productos/vista', (req, res) => {
     })
 
 })
+app.get('/productos/agregar', (req, res) => {
+  res.render('add')
+})
 
 router.get('/productos/listar', (req, res) => {
   fs.promises.readFile('./productos.txt', 'utf-8')
@@ -77,7 +80,7 @@ router.post('/productos/guardar', (req, res) => {
       
       let temp = [...raw, productoNuevo]
       fs.promises.writeFile('./productos.txt', JSON.stringify(temp, null, '\t')) 
-      res.send(productoNuevo)
+      res.redirect('/productos/agregar')
     })
 })
 
