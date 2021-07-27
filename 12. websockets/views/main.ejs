@@ -24,7 +24,7 @@
                 <% for(var i=0; i<productos.length; i++) { %>
                     <tr>
                       <td><%= productos[i].title %></td>
-                      <td><%= productos[i].price %></td>
+                      <td>$<%= productos[i].price %></td>
                       <td><img width='50' src=<%= productos[i].thumbnail %>></img></td>
                     </tr>
                 <% } %>

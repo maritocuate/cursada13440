@@ -1,11 +1,11 @@
 <div class="jumbotron">
   <h2>Agregar Producto</h2>
-  <div class="container">
-    <form action="/api/productos/guardar" method="POST">
-        Nombre: <input type="text" name="title">
-        Precio: <input type="text" name="price">
-        Foto URL: <input type="text" name="thumbnail">
-        <button>Enviar</button>
-    </form>
+  <div class="card">
+    <div class="card-body">
+        Nombre: <input id="title-input" type="text" name="title">
+        Precio: <input id="price-input" type="text" name="price">
+        Foto URL: <input id="thumbnail-input" type="text" name="thumbnail">
+        <button id="save-btn" onclick="enviarMensaje()">Guardar</button>
+    </div>
   </div>
 </div>

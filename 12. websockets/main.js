@@ -108,19 +108,14 @@ http.listen(port, () => console.log('listen port: '+port))
 
 
 //  Socket Io
+let productos = []
 io.on('connection', socket => {
-  console.log('conectado')
-  socket.emit('mi mje', 'mje servidor')
+  console.log('usuario conectado')
+  socket.emit(`productos-todos`, { productos: productos})
   
   socket.on('notificacion', data => {
-    
-    fs.promises.readFile('./productos.txt', 'utf-8')
-      .then(data => {
-        console.log(data)
-        /* let raw = JSON.parse(data)
-        if(raw.length == 0) raw = {error: 'No hay productos cargados'}
-        var productos = raw
-        res.render('main', {productos, hayProductos:true}) */
-      })
+    console.log(data)
+    productos.push(data)
+    io.sockets.emit('recibir nuevoProducto', [data])
   })
 })
