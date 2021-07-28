@@ -76,7 +76,7 @@ router.post('/productos/guardar', (req, res) => {
       productoNuevo.title = req.body.title
       productoNuevo.price = req.body.price
       productoNuevo.thumbnail = req.body.thumbnail
-      productoNuevo.id = raw.slice(-1)[0].id + 1
+      productoNuevo.id = (raw.length==0) ? 0 : raw.slice(-1)[0].id + 1
       
       let temp = [...raw, productoNuevo]
       fs.promises.writeFile('./productos.txt', JSON.stringify(temp, null, '\t')) 
