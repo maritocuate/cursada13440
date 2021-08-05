@@ -1,0 +1,11 @@
+.user-text {
+  color: blue;
+  font-weight: bold;
+}
+.time-text {
+  color: brown;
+}
+.msg-text {
+  font-style: italic;
+  color: green;
+}
