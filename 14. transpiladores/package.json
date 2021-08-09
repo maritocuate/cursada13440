@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ServerES6toJS5": "babel ./server.es6.js -o ./server.js -w",
-    "ServerTStoJS5": "tsc ./server.ts -w"
+    "ServerES6toJS5": "babel ./server.es6.js -o ./server.js",
+    "ServerTStoJS5": "tsc ./server.ts"
   },
   "author": "",
   "license": "ISC",
