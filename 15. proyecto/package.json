@@ -1,0 +1,24 @@
+{
+  "name": "expavanzado",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ServerES6toJS5": "babel ./server.es6.js -o ./server.js",
+    "ServerTStoJS5": "tsc ./server.ts -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.12",
+    "pug": "^3.0.2",
+    "socket.io": "^4.1.3",
+    "typescript": "^4.3.5"
+  }
+}
